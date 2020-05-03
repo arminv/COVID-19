@@ -25,7 +25,7 @@ export const fetch_all_data = async (country) => {
     headers: HEADERS,
   })
     .then((response) => {
-      console.log(response.data.response);
+      return(response.data.response);
     })
     .catch((error) => {
       console.log(error);
