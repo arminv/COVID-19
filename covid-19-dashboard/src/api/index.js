@@ -8,12 +8,24 @@ const HEADERS = {
   'x-rapidapi-key': API_KEY,
 };
 
-// Get All Countries:
-export const fetch_all_countries = async () => {};
+// Get List of All Countries:
+export const fetch_all_countries = async () => {
+  return await axios({
+    method: 'GET',
+    url: `${BASE_URL}/countries`,
+    headers: HEADERS,
+  })
+    .then((response) => {
+      return response.data.response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
-// Get All Statistics for All Countries or a given country:
+// Get current statistics for all countries or a given country:
 export const fetch_all_data = async (country) => {
-  let CUSTOM_URL = `${BASE_URL}/statistics`;
+  let CUSTOM_URL = `${BASE_URL}/statistics?country=All`;
 
   if (country) {
     CUSTOM_URL = `${BASE_URL}/statistics?country=${country}`;
@@ -25,7 +37,29 @@ export const fetch_all_data = async (country) => {
     headers: HEADERS,
   })
     .then((response) => {
-      return(response.data.response);
+      return response.data.response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+// Get historical data for all countries or a given country:
+export const fetch_all_history = async (country) => {
+  let CUSTOM_URL = `${BASE_URL}/history?country=All`;
+
+  if (country) {
+    CUSTOM_URL = `${BASE_URL}/history?country=${country}`;
+  }
+
+  return await axios({
+    method: 'GET',
+    url: CUSTOM_URL,
+    headers: HEADERS,
+  })
+    .then((response) => {
+      // console.log(response.data.response);
+      return response.data.response;
     })
     .catch((error) => {
       console.log(error);
