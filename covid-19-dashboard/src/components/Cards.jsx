@@ -7,15 +7,15 @@ import CountUp from 'react-countup';
 // import styles from './Cards.module.css';
 
 const Cards = ({ data }) => {
-  if (!data) {
-    return <p>Loading...</p>;
-  } else {
-    const { country, cases, deaths, tests, day } = data;
-    return (
-      <>
-        <Grid container spacing={3} justify='center'>
-          <Grid item component={Card} xs={12} md={3}>
-            <h2>{country}</h2>
+  const { country, cases, deaths, tests, day } = data;
+  return (
+    <>
+      <Grid container spacing={3} justify='center'>
+        <Grid item component={Card} xs={12} md={3}>
+          <Card variant='outlined'>
+            <Typography variant='h5' component='h2'>
+              {country}
+            </Typography>
             <CardContent>
               <Typography color='textSecondary' gutterBottom>
                 Total Cases
@@ -35,7 +35,7 @@ const Cards = ({ data }) => {
                 +
                 <CountUp
                   start={0}
-                  end={cases.new}
+                  end={cases.new ? parseInt(cases.new.substr(1)) : null }
                   duration={2.5}
                   separator=','
                 ></CountUp>
@@ -75,11 +75,11 @@ const Cards = ({ data }) => {
               </Typography>
               <Typography variant='body2'>Total Number of Cases</Typography>
             </CardContent>
-          </Grid>
+          </Card>
         </Grid>
-      </>
-    );
-  }
+      </Grid>
+    </>
+  );
 };
 
 export default Cards;
