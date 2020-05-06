@@ -32,7 +32,7 @@ const Charts = ({ data }) => {
       //   ],
       datasets: [
         {
-          label: `${country}`,
+          label: 'Bar Chart',
           data: [
             cases.total,
             cases.new ? parseInt(cases.new.substr(1)) : null,
@@ -57,19 +57,32 @@ const Charts = ({ data }) => {
           ],
           borderWidth: 1,
         },
+        {
+          label: 'Line Chart',
+          data: [
+            cases.total,
+            cases.new ? parseInt(cases.new.substr(1)) : null,
+            deaths.total,
+            tests.total,
+          ],
+          backgroundColor: ['rgba(25, 99, 132, 0.05)'],
+          type: 'line',
+          // this dataset is drawn on top
+          order: 2,
+        },
       ],
     },
     options: {
       maintainAspectRatio: true,
       title: {
         display: true,
-        text: `Current Situation in ${country}`,
+        text: country === 'All' ? 'Global' : `Current Situation in ${country}`,
       },
-      legend: { display: false },
+      legend: { display: true },
       scales: {
         yAxes: [
           {
-            type: 'logarithmic',
+            // type: 'logarithmic',
             ticks: {
               //   beginAtZero: false,
               min: 0,
