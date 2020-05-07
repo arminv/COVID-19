@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.822);
+}
+
+.container {
+  display: grid;
+  grid-template-areas:
+    'card card card card card card card'
+    '. . . dropdown . . .'
+    'barpie barpie barpie barpie barpie barpie barpie';
+  align-content: center;
+  margin: 0% 0%;
+  padding: 0% 0%;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown {
+  margin-top: 10%;
+  grid-area: dropdown;
+  padding: 2% 3% !important;
+  border: 1px solid #dec79b;
+  background: whitesmoke;
+}
+
+.card {
+  grid-area: card;
+}
+
+.bar-pie-chart {
+  /* width: 90vw; */
+  padding: 2% 2%;
+  margin: 5% 0%;
+  border: 1px solid #dec79b;
+  grid-area: barpie;
+  /* background: whitesmoke; */
+}
+
+/*
+@media (max-width: 770px) {
+  .container {
+    margin: 0 10%;
+  }
+
+  .image {
+    width: 100%;
+  }
+} */

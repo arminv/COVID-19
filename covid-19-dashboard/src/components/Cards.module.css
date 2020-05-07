@@ -4,20 +4,8 @@
 
 .card {
   margin: 0 2% !important;
-border: 2px solid red;
+  border: 5px solid #dec79b;
 }
-
-/* .infected {
-  border-bottom: 10px solid rgba(0, 0, 255, 0.5);
-}
-
-.recovered {
-  border-bottom: 10px solid rgba(0, 255, 0, 0.5);
-}
-
-.deaths {
-  border-bottom: 10px solid rgba(255, 0, 0, 0.5);
-} */
 
 @media (max-width: 770px) {
   .card {

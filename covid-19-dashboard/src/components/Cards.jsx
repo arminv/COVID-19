@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
-// import cx from 'classnames';
 
 import styles from './Cards.module.css';
 
@@ -15,7 +14,7 @@ const Cards = ({ data }) => {
         <Grid item component={Card} xs={12} md={3} className={styles.card}>
           <Card variant='outlined'>
             <Typography variant='h5' component='h2'>
-              {country}
+              {country === 'All' ? 'Global' : country}
             </Typography>
             <CardContent>
               <Typography color='textSecondary' gutterBottom>

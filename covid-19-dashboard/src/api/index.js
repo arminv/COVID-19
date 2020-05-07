@@ -25,7 +25,7 @@ export const fetch_all_countries = async () => {
 
 // Get current statistics for all countries or a given country:
 export const fetch_all_data = async (country) => {
-  let CUSTOM_URL = `${BASE_URL}/statistics?country=All`;
+  let CUSTOM_URL = `${BASE_URL}/statistics`;
 
   if (country) {
     CUSTOM_URL = `${BASE_URL}/statistics?country=${country}`;

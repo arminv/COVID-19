@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { NativeSelect, FormControl } from '@material-ui/core';
 
+import './App.css';
+
 import {
   fetch_all_data,
   fetch_all_countries,
-  // TODO: fetch_all_history,
+  // TODO: fetch_history,
 } from './api/index';
 
 import Cards from './components/Cards';
 import BarChart from './components/BarChart';
 import PieChart from './components/PieChart';
+import LineChart from './components/LineChart';
 
 const App = () => {
   const [data, setData] = useState({});
+  const [allData, setAllData] = useState({});
   const [countries, setCountries] = useState('');
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
-      const allData = await fetch_all_data();
-      setData(allData);
-      setIsLoading(false);
+      const currentData = await fetch_all_data('All');
+      setData(currentData);
     }
     getData();
+
+    async function getAllData() {
+      const currentAllData = await fetch_all_data();
+      setAllData(currentAllData);
+      setIsLoading(false);
+    }
+    getAllData();
   }, []);
 
   useEffect(() => {
@@ -51,27 +61,42 @@ const App = () => {
     setIsLoading(false);
   };
 
-  // TODO: fetch_all_history(country);
+  // TODO: fetch_history(country);
+  // TODO: fetch_history();
 
   return isLoading ? (
     <div>Loading</div>
   ) : (
-    <>
-      <FormControl>
-        <NativeSelect
-          defaultValue=''
-          onChange={(e) => handleCountryChange(e.target.value)}
-        >
-          <option value=''>Global</option>
-          {allCountriesList}
-        </NativeSelect>
-      </FormControl>
+    <div className='container'>
+      <div className='dropdown'>
+        <FormControl>
+          <NativeSelect
+            defaultValue=''
+            onChange={(e) => handleCountryChange(e.target.value)}
+          >
+            <option value='All'>Global</option>
+            {allCountriesList}
+          </NativeSelect>
+        </FormControl>
+      </div>
 
-      <Cards data={data[0]} />
-      <BarChart data={data[0]} />
-      <PieChart data={data[0]} />
+      <div className='card'>
+        <Cards data={data[0]} />
+      </div>
+      <div className='bar-pie-chart'>
+        {country === 'All' ? <LineChart data={allData} continent /> : null}
+        <br />
+        <br />
+        {country === 'All' ? <LineChart data={allData} /> : null}
+        <br />
+        <br />
+        <PieChart data={data[0]} />
+        <br />
+        <br />
+        <BarChart data={data[0]} />
+      </div>
       {/* {allCountriesCards} */}
-    </>
+    </div>
   );
 };
 
