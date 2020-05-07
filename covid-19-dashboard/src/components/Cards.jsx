@@ -4,14 +4,15 @@ import { Card, CardContent, Typography, Grid } from '@material-ui/core';
 import CountUp from 'react-countup';
 // import cx from 'classnames';
 
-// import styles from './Cards.module.css';
+import styles from './Cards.module.css';
 
 const Cards = ({ data }) => {
   const { country, cases, deaths, tests, day } = data;
+
   return (
-    <>
+    <div className={styles.container}>
       <Grid container spacing={3} justify='center'>
-        <Grid item component={Card} xs={12} md={3}>
+        <Grid item component={Card} xs={12} md={3} className={styles.card}>
           <Card variant='outlined'>
             <Typography variant='h5' component='h2'>
               {country}
@@ -35,7 +36,7 @@ const Cards = ({ data }) => {
                 +
                 <CountUp
                   start={0}
-                  end={cases.new ? parseInt(cases.new.substr(1)) : null }
+                  end={cases.new ? parseInt(cases.new.substr(1)) : null}
                   duration={2.5}
                   separator=','
                 ></CountUp>
@@ -78,7 +79,7 @@ const Cards = ({ data }) => {
           </Card>
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 

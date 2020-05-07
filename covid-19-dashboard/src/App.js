@@ -4,11 +4,12 @@ import { NativeSelect, FormControl } from '@material-ui/core';
 import {
   fetch_all_data,
   fetch_all_countries,
-  // fetch_all_history,
+  // TODO: fetch_all_history,
 } from './api/index';
 
 import Cards from './components/Cards';
-import Charts from './components/Charts';
+import BarChart from './components/BarChart';
+import PieChart from './components/PieChart';
 
 const App = () => {
   const [data, setData] = useState({});
@@ -50,7 +51,7 @@ const App = () => {
     setIsLoading(false);
   };
 
-  // fetch_all_history(country);
+  // TODO: fetch_all_history(country);
 
   return isLoading ? (
     <div>Loading</div>
@@ -67,7 +68,8 @@ const App = () => {
       </FormControl>
 
       <Cards data={data[0]} />
-      <Charts data={data[0]} />
+      <BarChart data={data[0]} />
+      <PieChart data={data[0]} />
       {/* {allCountriesCards} */}
     </>
   );
