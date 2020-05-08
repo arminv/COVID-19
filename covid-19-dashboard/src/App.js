@@ -6,17 +6,19 @@ import './App.css';
 import {
   fetch_all_data,
   fetch_all_countries,
-  // TODO: fetch_history,
+  fetch_all_history,
 } from './api/index';
 
 import Cards from './components/Cards';
 import BarChart from './components/BarChart';
 import PieChart from './components/PieChart';
 import LineChart from './components/LineChart';
+import HistoryChart from './components/HistoryChart';
 
 const App = () => {
   const [data, setData] = useState({});
   const [allData, setAllData] = useState({});
+  const [allHistoryData, setAllHistoryData] = useState({});
   const [countries, setCountries] = useState('');
   const [country, setCountry] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
@@ -31,9 +33,15 @@ const App = () => {
     async function getAllData() {
       const currentAllData = await fetch_all_data();
       setAllData(currentAllData);
-      setIsLoading(false);
     }
     getAllData();
+
+    async function getAllHistoryData() {
+      const currentHistoryData = await fetch_all_history();
+      setAllHistoryData(currentHistoryData);
+      setIsLoading(false);
+    }
+    getAllHistoryData();
   }, []);
 
   useEffect(() => {
@@ -57,6 +65,8 @@ const App = () => {
   const handleCountryChange = async (country) => {
     const countryData = await fetch_all_data(country);
     setData(countryData);
+    const countryHistoryData = await fetch_all_history(country);
+    setAllHistoryData(countryHistoryData);
     setCountry(country);
     setIsLoading(false);
   };
@@ -65,7 +75,7 @@ const App = () => {
   // TODO: fetch_history();
 
   return isLoading ? (
-    <div>Loading</div>
+    <div className='container'>Loading</div>
   ) : (
     <div className='container'>
       <div className='dropdown'>
@@ -83,7 +93,10 @@ const App = () => {
       <div className='card'>
         <Cards data={data[0]} />
       </div>
-      <div className='bar-pie-chart'>
+      <div className='charts'>
+        <HistoryChart data={allHistoryData} />
+        <br />
+        <br />
         {country === 'All' ? <LineChart data={allData} continent /> : null}
         <br />
         <br />

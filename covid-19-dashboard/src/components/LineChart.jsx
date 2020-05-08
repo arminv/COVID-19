@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chartjs from 'chart.js';
-Chartjs.defaults.global.defaultFontColor = 'whitesmoke';
-Chartjs.defaults.global.defaultFontFamily = 'Arial';
-Chartjs.defaults.global.title.fontSize = 16;
-Chartjs.defaults.global.title.padding = 26;
-Chartjs.defaults.global.elements.point.radius = 5;
-Chartjs.defaults.global.elements.point.pointStyle = 'star';
-Chartjs.defaults.global.elements.line.fill = false;
-// Chartjs.defaults.global.elements.line.stepped = true;
 
 const LineChart = (allData) => {
   const { data, continent } = allData;
@@ -19,6 +11,9 @@ const LineChart = (allData) => {
     'Asia',
     'South-America',
     'Africa',
+    // 'Australia',
+    // 'Oceania',
+    // 'Antarctica'
   ];
 
   const continentNames = [];
@@ -51,30 +46,9 @@ const LineChart = (allData) => {
       labels: continent ? continentNames : countriesNames,
       datasets: [
         {
-          label: continent
-            ? 'Continent Data'
-            : `Countries with more than ${MIN_TOTAL_CASES} total cases`,
+          label: 'Total Cases',
           data: continent ? continentData : countriesData,
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.1)',
           borderColor: [
             'rgba(54, 162, 235, 1)',
             'rgba(255, 99, 132, 1)',
@@ -102,7 +76,7 @@ const LineChart = (allData) => {
     options: {
       layout: {
         padding: {
-          left: 100,
+          left: 0,
           right: 0,
           top: 0,
           bottom: 0,

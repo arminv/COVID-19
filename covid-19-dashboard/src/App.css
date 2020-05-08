@@ -9,14 +9,14 @@ body {
 .container {
   display: grid;
   grid-template-areas:
-    'card card card card card card card'
-    '. . . dropdown . . .'
-    'barpie barpie barpie barpie barpie barpie barpie';
+    'card card card card card'
+    '. . dropdown . . '
+    'charts charts charts charts charts';
   align-content: center;
-  margin: 0% 0%;
+  margin: 2% 5%;
   padding: 0% 0%;
   align-items: center;
-  justify-content: center;
+  align-content: center;
 }
 
 .dropdown {
@@ -31,12 +31,12 @@ body {
   grid-area: card;
 }
 
-.bar-pie-chart {
+.charts {
   /* width: 90vw; */
   padding: 2% 2%;
   margin: 5% 0%;
   border: 1px solid #dec79b;
-  grid-area: barpie;
+  grid-area: charts;
   /* background: whitesmoke; */
 }
 
